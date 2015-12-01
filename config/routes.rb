@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :polls
   resources :delegations
   resources :memberships
   resources :users
