@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Delegee:</strong>
+  <%= @delegation.delegee %>
+</p>
+
+<p>
+  <strong>Representative:</strong>
+  <%= @delegation.representative %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @delegation.category %>
+</p>
+
+<%= link_to 'Edit', edit_delegation_path(@delegation) %> |
+<%= link_to 'Back', delegations_path %>

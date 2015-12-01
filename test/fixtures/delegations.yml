@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  delegee_id: 
+  representative_id: 
+  category_id: 
+
+two:
+  delegee_id: 
+  representative_id: 
+  category_id: 

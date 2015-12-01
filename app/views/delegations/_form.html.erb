@@ -1,0 +1,29 @@
+<%= form_for(@delegation) do |f| %>
+  <% if @delegation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@delegation.errors.count, "error") %> prohibited this delegation from being saved:</h2>
+
+      <ul>
+      <% @delegation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :delegee_id %><br>
+    <%= f.text_field :delegee_id %>
+  </div>
+  <div class="field">
+    <%= f.label :representative_id %><br>
+    <%= f.text_field :representative_id %>
+  </div>
+  <div class="field">
+    <%= f.label :category_id %><br>
+    <%= f.text_field :category_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

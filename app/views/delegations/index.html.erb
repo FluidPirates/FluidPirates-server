@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Delegations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Delegee</th>
+      <th>Representative</th>
+      <th>Category</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @delegations.each do |delegation| %>
+      <tr>
+        <td><%= delegation.delegee %></td>
+        <td><%= delegation.representative %></td>
+        <td><%= delegation.category %></td>
+        <td><%= link_to 'Show', delegation %></td>
+        <td><%= link_to 'Edit', edit_delegation_path(delegation) %></td>
+        <td><%= link_to 'Destroy', delegation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Delegation', new_delegation_path %>
