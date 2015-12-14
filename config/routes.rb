@@ -7,11 +7,12 @@ Rails.application.routes.draw do
     get "users/current" => "users#current"
 
     resources :groups do
-      get "users" => "groups#users"
+      resources "users", only: [:index] do
+        patch "membership" => "memberships#update"
+        delete "membership" => "memberships#delete"
+      end
 
       resources :categories do
-        get "polls" => "polls#index"
-
         resources "delegations"
       end
 

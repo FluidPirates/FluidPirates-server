@@ -5,6 +5,10 @@ class API::GroupsController < API::APIController
     render json: @group.to_json(only: [:name, :description])
   end
 
+  def index
+    render json: Group.all.map { |group| group.to_json(only: [:name, :description]) }
+  end
+
   def create
     @group = Group.create(group_params)
 
@@ -31,7 +35,7 @@ class API::GroupsController < API::APIController
   protected
 
   def fetch_group
-    @group = Group.find_by!(id: params[:id])
+    @group = Group.find_by!(id: params[:id] || params[:group_id])
   end
 
   def group_params

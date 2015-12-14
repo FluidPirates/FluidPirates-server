@@ -1,4 +1,3 @@
-* resources :groups
 * get "users" => "groups#users"
 * resources :categories
 * get "polls" => "polls#index"
@@ -9,3 +8,6 @@
 * resources :votes
 * Add Emails table
 * Handle rights
+* Group domains
+* Add member to group
+* Join a group
