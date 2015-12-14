@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151214123438) do
+ActiveRecord::Schema.define(version: 20151214142005) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -45,8 +45,9 @@ ActiveRecord::Schema.define(version: 20151214123438) do
 
   create_table "groups", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.text     "description"
   end
 
   create_table "memberships", force: :cascade do |t|
@@ -54,6 +55,7 @@ ActiveRecord::Schema.define(version: 20151214123438) do
     t.integer  "group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "role"
   end
 
   add_index "memberships", ["group_id"], name: "index_memberships_on_group_id"
@@ -65,6 +67,7 @@ ActiveRecord::Schema.define(version: 20151214123438) do
     t.integer  "category_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.text     "description"
   end
 
   add_index "polls", ["category_id"], name: "index_polls_on_category_id"
@@ -73,8 +76,9 @@ ActiveRecord::Schema.define(version: 20151214123438) do
   create_table "propositions", force: :cascade do |t|
     t.string   "name"
     t.integer  "poll_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.text     "description"
   end
 
   add_index "propositions", ["poll_id"], name: "index_propositions_on_poll_id"
