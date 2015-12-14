@@ -24,4 +24,23 @@ RSpec.describe API::SessionsController, type: :request do
       end
     end
   end
+
+  describe "#create" do
+    let(:name) { "Some Name" }
+    let(:email) { "test@example.com" }
+    let(:password) { "some-password" }
+
+    subject do
+      post "/api/users", user: { name: name, email: email, password: password }
+      json_response
+    end
+
+    it "creates a new user" do
+      expect { subject }.to change { User.count }.by(1)
+    end
+
+    it "returns a token" do
+      expect(subject["token"]).to be_present
+    end
+  end
 end
