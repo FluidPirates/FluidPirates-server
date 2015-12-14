@@ -2,11 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.3'
 gem 'sqlite3'
-
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+# gem 'cancancan'
 gem 'jbuilder', '~> 2.0'
-
-# Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
 # Use Unicorn as the app server
@@ -17,8 +14,6 @@ gem 'bcrypt', '~> 3.1.7'
 
 group :development, :test do
   gem 'byebug'
-  # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
   gem 'spring'
 
   gem 'rspec-rails'
