@@ -2,8 +2,10 @@
 
 .byebug_history
 
-/tmp/
-/log/
+/tmp
+/log
+/db/*.sqlite3
+/config/secrets.yml
 
 ## Environment normalisation:
 /.bundle/
