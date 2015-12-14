@@ -1,0 +1,11 @@
+* resources :groups
+* get "users" => "groups#users"
+* resources :categories
+* get "polls" => "polls#index"
+* resources "delegations"
+* resources :polls
+* resources :propositions
+* resources :choices
+* resources :votes
+* Add Emails table
+* Handle rights

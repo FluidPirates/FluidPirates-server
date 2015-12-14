@@ -11,7 +11,7 @@ class API::GroupsController < API::APIController
     if @group.save
       render_success
     else
-      render_error(@group.errors.full_messages.join(", ")
+      render_error(@group.full_error_messages)
     end
   end
 
@@ -19,7 +19,7 @@ class API::GroupsController < API::APIController
     if @group.update_attributes(group_params)
       render_success
     else
-      render_error(@group.errors.full_messages.join(", ")
+      render_error(@group.full_error_messages)
     end
   end
 
@@ -31,7 +31,7 @@ class API::GroupsController < API::APIController
   protected
 
   def fetch_group
-    @group = Group.find_by!(slug: params[:slug])
+    @group = Group.find_by!(id: params[:id])
   end
 
   def group_params
