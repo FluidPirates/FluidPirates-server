@@ -16,7 +16,7 @@ RSpec.describe API::SessionsController, type: :request do
       let(:password) { correct_password }
 
       it "has a success message" do
-        expect(subject["message"]).to eq("Success")
+        expect(subject["message"]).to eq("Logged in")
       end
     end
 

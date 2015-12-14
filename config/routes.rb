@@ -7,9 +7,7 @@ Rails.application.routes.draw do
 
     post 'users' => 'users#create'
 
-    scope 'current_user' do
-      get '/' => 'users#current'
-    end
+    get '/users/current' => 'users#current'
   end
 
   root 'pages#home'

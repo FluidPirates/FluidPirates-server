@@ -1,12 +1,13 @@
 class API::SessionsController < API::APIController
+  skip_before_action :verify_token
+
   def create
     @user = User.find_by(email: params[:email])
 
-    if !@user
+    if @user.try(:authenticate, params[:password])
+      render json: { token: Token.create_for_user(@user), message: "Logged in" }
+    elsif !@user
       render_error("User not found")
-    elsif @user.try(:authenticate, params[:password])
-      set_current_user(@user)
-      render_success
     else
       render_error("Wrong password")
     end

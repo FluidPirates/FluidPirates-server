@@ -22,5 +22,7 @@ group :development, :test do
   gem 'spring'
 
   gem 'rspec-rails'
+  gem 'fuubar'
   gem 'factory_girl_rails'
 end
+
