@@ -9,7 +9,7 @@ RSpec.describe API::SessionsController, type: :request do
 
     subject do
       post "/api/sessions", email: email, password: password
-      JSON.parse(response.body)
+      json_response
     end
 
     context "with the correct password" do
@@ -26,6 +26,15 @@ RSpec.describe API::SessionsController, type: :request do
       it "includes an error message" do
         expect(subject["message"]).to eq("Wrong password")
       end
+    end
+  end
+
+  describe "#destroy" do
+    let!(:token) { create(:token) }
+    subject { delete "/api/sessions", token: token.value }
+
+    it "destroys the token" do
+      expect { subject }.to change { Token.count }.by(-1)
     end
   end
 end

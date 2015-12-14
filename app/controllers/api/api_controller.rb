@@ -14,7 +14,7 @@ class API::APIController < ApplicationController
 
   def current_token
     return unless params[:token].present?
-    Token.find_by(value: params[:token])
+    @current_token ||= Token.find_by(value: params[:token])
   end
 
   def current_user

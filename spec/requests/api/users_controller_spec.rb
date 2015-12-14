@@ -7,7 +7,7 @@ RSpec.describe API::SessionsController, type: :request do
 
     subject do
       get "/api/users/current", token: token
-      JSON.parse(response.body)
+      json_response
     end
 
     context "when not connected" do
