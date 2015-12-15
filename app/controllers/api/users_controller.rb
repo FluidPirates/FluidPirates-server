@@ -9,6 +9,16 @@ class API::UsersController < API::APIController
     end
   end
 
+  def index
+    if params[:group_id]
+      @users = Group.find_by!(id: params[:group_id]).users
+    else
+      @users = User.all
+    end
+
+    render json: @users.to_json(only: [:id, :name, :email])
+  end
+
   def create
     @user = User.create(user_params)
 

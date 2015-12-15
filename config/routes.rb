@@ -3,14 +3,14 @@ Rails.application.routes.draw do
     post "sessions" => "sessions#create"
     delete "sessions" => "sessions#destroy"
 
+    get "users" => "users#index"
     post "users" => "users#create"
     get "users/current" => "users#current"
 
     resources :groups do
-      resources "users", only: [:index] do
-        patch "membership" => "memberships#update"
-        delete "membership" => "memberships#delete"
-      end
+      get "users" => "users#index"
+      patch "users/:user_id/membership" => "memberships#update"
+      delete "users/:user_id/membership" => "memberships#delete"
 
       resources :categories do
         resources "delegations"
