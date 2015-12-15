@@ -1,8 +1,12 @@
 class API::UsersController < API::APIController
   skip_before_action :verify_token, only: [:create]
 
+  def show
+  end
+
   def current
     @user = current_user
+    render "api/users/show"
   end
 
   def index

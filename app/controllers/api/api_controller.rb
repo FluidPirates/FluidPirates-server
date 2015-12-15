@@ -14,16 +14,16 @@ class API::APIController < ApplicationController
     render_message(message, status: status)
   end
 
-  def render_message(message, status: status)
+  def record_not_found
+    render_error("Record not found", status: :not_found)
+  end
+
+  def render_message(message, status:)
     if Rails.env.development?
       render json: { message: message, status: status }, status: status
     else
       render json: { message: message }, status: status
     end
-  end
-
-  def record_not_found
-    render_error("Record not found", status: :not_found)
   end
 
   def current_token
@@ -32,14 +32,16 @@ class API::APIController < ApplicationController
   end
 
   def current_user
-    current_token.try(:user)
+    current_token.user
   end
 
   def verify_token
-    return if Rails.env.development? && params[:skip_token].present?
-
-    if !current_token || current_token.expired?
+    if !current_token
       render_error("Token missing")
+    elsif current_token.expired?
+      render_error("Token expired")
+    elsif !current_token.user
+      render_error("Token doesn't belong to an user")
     end
   end
 

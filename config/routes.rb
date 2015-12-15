@@ -3,9 +3,8 @@ Rails.application.routes.draw do
     post "sessions" => "sessions#create"
     delete "sessions" => "sessions#destroy"
 
-    get "users" => "users#index"
-    post "users" => "users#create"
     get "users/current" => "users#current"
+    resources :users
 
     resources :groups do
       get "users" => "users#index"
