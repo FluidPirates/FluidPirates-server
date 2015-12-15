@@ -1,8 +1,0 @@
-* all api views
-* Add Emails table
-* Handle rights
-* Group domains
-* Add member to group
-* Join a group
-* Permit params
-* Add smoke tests for all API calls
