@@ -1,6 +1,8 @@
 class Token < ActiveRecord::Base
   belongs_to :user
 
+  scope :valid, -> { where("expires_at < ?", Date.current) }
+
   EXPIRATION_PERIOD = 1.month
 
   def self.create_for_user(user)

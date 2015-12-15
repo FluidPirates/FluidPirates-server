@@ -9,7 +9,7 @@ class API::DelegationsController < API::APIController
   end
 
   def create
-    @delegation = Delegation.create(delegation_params, category: @category, user: current_user)
+    @delegation = current_user.delegations.create({category: @category}.merge(delegation_params))
 
     if @delegation.save
       render_success

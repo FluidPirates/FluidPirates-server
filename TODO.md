@@ -2,7 +2,7 @@
 Current
 ----
 
-* Add smoke tests for main API calls
+* memberships API
 * Add database constraints and defaults
 * Handle rights
 * Join a group

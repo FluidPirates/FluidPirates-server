@@ -7,9 +7,7 @@ Rails.application.routes.draw do
     resources :users
 
     resources :groups do
-      get "users" => "users#index"
-      patch "users/:user_id/membership" => "memberships#update"
-      delete "users/:user_id/membership" => "memberships#delete"
+      resources :memberships
 
       resources :categories do
         resources "delegations"

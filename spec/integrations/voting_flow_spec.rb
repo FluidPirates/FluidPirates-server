@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe "Voting flow", type: :request do
-  it "does not raise any exception" do
+  let!(:other_user) { create(:user) }
+
+  it "lets the user creates everything necessary to vote" do
     get "/"
     expect(response.body).to include("API")
 
@@ -18,6 +20,9 @@ RSpec.describe "Voting flow", type: :request do
 
     get "/api/users/current", token: token
     assert_response 200
+
+    user_id = json_response["id"]
+
     delete "/api/sessions", token: token
     assert_response 200
     post "/api/sessions", user_attributes
@@ -33,6 +38,13 @@ RSpec.describe "Voting flow", type: :request do
     group_id = json_response.first["id"]
     group_url = "/api/groups/#{group_id}"
 
+    post "#{group_url}/memberships", token: token, membership: { user: other_user.id, role: "member" }
+    assert_response 200
+    get "#{group_url}/memberships", token: token
+    assert_response 200
+
+    other_user_id = json_response.select { |u| u["id"] != user_id }.first["id"]
+
     post "#{group_url}/categories", token: token, poll: build(:category).attributes
     assert_response 200
     get "#{group_url}/categories", token: token
@@ -40,6 +52,11 @@ RSpec.describe "Voting flow", type: :request do
 
     category_id = json_response.first["id"]
     category_url = "#{group_url}/categories/#{category_id}"
+
+    post "#{category_url}/delegations", token: token, delegation: { delegate_id: other_user_id }
+    assert_response 200
+    get "#{category_url}/delegations", token: token
+    assert_response 200
 
     post "#{category_url}/polls", token: token, poll: build(:poll).attributes
     assert_response 200
