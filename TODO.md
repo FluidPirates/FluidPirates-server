@@ -2,7 +2,7 @@
 Current
 ----
 
-* Fix controllers fetch_resources
+* Add models associations
 * Add factories
 * Add seeding
 * Add Emails table
