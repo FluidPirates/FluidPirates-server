@@ -1,3 +1,3 @@
 object @vote
 
-attributes :user_id, :choice_id
+attributes :id, :user_id, :choice_id

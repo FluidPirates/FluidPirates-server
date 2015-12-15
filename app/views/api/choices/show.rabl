@@ -1,3 +1,3 @@
 object @choice
 
-attributes :name
+attributes :id, :name

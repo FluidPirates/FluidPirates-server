@@ -9,7 +9,7 @@ class API::CategoriesController < API::APIController
   end
 
   def create
-    @category = Category.create(category_params, group: @group)
+    @category = @group.categories.create(category_params)
 
     if @category.save
       render_success

@@ -1,6 +1,6 @@
 object @proposition
 
-attributes :name, :description
+attributes :id, :name, :description
 
 child :choices do
   extends "api/choices/show"

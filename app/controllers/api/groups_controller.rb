@@ -12,6 +12,7 @@ class API::GroupsController < API::APIController
     @group = Group.create(group_params)
 
     if @group.save
+      @group.add_admin(current_user)
       render_success
     else
       render_error(@group.full_error_messages)

@@ -5,7 +5,7 @@ RSpec.describe API::GroupsController, type: :request do
   let(:token) { create(:token, user: user).value }
 
   describe "#index" do
-    let!(:groups) { create_list(:group, 5) }
+    let!(:memberships) { create_list(:membership, 2, user: user) }
 
     subject do
       get "/api/groups", token: token
@@ -13,7 +13,7 @@ RSpec.describe API::GroupsController, type: :request do
     end
 
     it "return the group's name" do
-      expect(subject.map { |group| group["name"] }).to include groups.first.name
+      expect(subject.size).to eq 2
     end
   end
 

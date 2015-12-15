@@ -9,7 +9,7 @@ class API::PropositionsController < API::APIController
   end
 
   def create
-    @proposition = Proposition.create(proposition_params, poll: @poll)
+    @proposition = @poll.propositions.create(proposition_params)
 
     if @proposition.save
       render_success

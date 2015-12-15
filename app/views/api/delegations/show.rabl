@@ -1,5 +1,7 @@
 object @delegation
 
+attributes :id
+
 child :user do
   extends "api/users/show"
 end

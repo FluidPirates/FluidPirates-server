@@ -17,6 +17,7 @@ Rails.application.routes.draw do
         resources :polls do
           resources :propositions do
             resources :choices do
+              get "votes/current" => "votes#current"
               resources :votes
             end
           end

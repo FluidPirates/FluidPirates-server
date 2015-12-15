@@ -5,11 +5,11 @@ class API::PollsController < API::APIController
   end
 
   def index
-    @polls = @group.polls
+    @polls = @category.polls
   end
 
   def create
-    @poll = Poll.create(poll_params, group: @group, user: current_user)
+    @poll = @category.polls.create(poll_params.merge(user: current_user))
 
     if @poll.save
       render_success
@@ -35,8 +35,9 @@ class API::PollsController < API::APIController
 
   def fetch_resources
     @group = Group.find_by!(id: params[:group_id])
+    @category = @group.categories.find_by!(id: params[:category_id])
     if params[:id]
-      @poll = @group.polls.find_by!(id: params[:id])
+      @poll = @category.polls.find_by!(id: params[:id])
     end
   end
 

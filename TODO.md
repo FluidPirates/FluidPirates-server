@@ -2,7 +2,7 @@
 Current
 ----
 
-* Add smoke tests for all API calls
+* Add smoke tests for main API calls
 * Add database constraints and defaults
 * Handle rights
 * Join a group
@@ -22,6 +22,7 @@ Later
   * Group profile pictures
 * Add Emails table
 * Group domains
+* Public / private votes
 
 ----
 Maybe

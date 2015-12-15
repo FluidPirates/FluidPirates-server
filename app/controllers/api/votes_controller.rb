@@ -5,7 +5,12 @@ class API::VotesController < API::APIController
   end
 
   def index
-    @votes = @category.votes
+    @votes = @choice.votes
+  end
+
+  def current
+    @votes = @choice.votes.where(user: current_user)
+    render "api/votes/index"
   end
 
   def create

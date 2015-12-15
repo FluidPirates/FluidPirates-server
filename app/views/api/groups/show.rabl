@@ -1,6 +1,6 @@
 object @group
 
-attributes :name, :description, :users_count
+attributes :id, :name, :description, :users_count
 
 child :categories do
   extends "api/categories/show"

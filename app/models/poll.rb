@@ -7,7 +7,9 @@ class Poll < ActiveRecord::Base
   has_many :votes, through: :choices
 
   def open?
-    open_at < Date.current && Date.current < close_at
+    return false if open_at && open_at > Date.current
+    return false if close_at && close_at < Date.current
+    return true
   end
 
   def closed?

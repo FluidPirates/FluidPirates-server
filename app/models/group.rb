@@ -13,6 +13,10 @@ class Group < ActiveRecord::Base
     users.size
   end
 
+  def add_admin(user)
+    memberships.create(user: user, role: "admin")
+  end
+
   def full_error_messages
     errors.full_messages.join(", ")
   end
