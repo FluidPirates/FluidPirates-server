@@ -2,7 +2,6 @@
 Current
 ----
 
-* Add models associations
 * Add factories
 * Add seeding
 * Add Emails table

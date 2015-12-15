@@ -1,7 +1,11 @@
 class Group < ActiveRecord::Base
-  has_many :categories
   has_many :memberships
   has_many :users, through: :memberships
+  has_many :categories
+  has_many :polls, through: :categories
+  has_many :propositions, through: :polls
+  has_many :choices, through: :propositions
+  has_many :votes, through: :choices
 
   before_validation :set_memberships_defaults
 
