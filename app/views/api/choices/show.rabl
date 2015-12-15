@@ -1,0 +1,3 @@
+object @choice
+
+attributes :name

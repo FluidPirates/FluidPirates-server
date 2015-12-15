@@ -14,12 +14,12 @@ Rails.application.routes.draw do
 
       resources :categories do
         resources "delegations"
-      end
 
-      resources :polls do
-        resources :propositions do
-          resources :choices do
-            resources :votes
+        resources :polls do
+          resources :propositions do
+            resources :choices do
+              resources :votes
+            end
           end
         end
       end

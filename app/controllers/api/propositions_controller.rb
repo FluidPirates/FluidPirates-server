@@ -35,7 +35,8 @@ class API::PropositionsController < API::APIController
 
   def fetch_resources
     @group = Group.find_by!(id: params[:group_id])
-    @poll = @group.polls.find_by!(id: params[:poll_id])
+    @category = @group.categories.find_by!(id: params[:category_id])
+    @poll = @category.polls.find_by!(id: params[:poll_id])
     if params[:id]
       @proposition = @poll.propositions.find_by!(id: params[:id])
     end

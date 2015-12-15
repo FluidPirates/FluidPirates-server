@@ -1,3 +1,3 @@
 object @user
 
-attributes :id, :name, :email
+attributes :name, :email

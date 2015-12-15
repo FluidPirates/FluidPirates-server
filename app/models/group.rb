@@ -5,6 +5,10 @@ class Group < ActiveRecord::Base
 
   before_validation :set_memberships_defaults
 
+  def users_count
+    users.size
+  end
+
   def full_error_messages
     errors.full_messages.join(", ")
   end
