@@ -2,9 +2,11 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.3'
 gem 'sqlite3'
-# gem 'cancancan'
+gem 'cancancan'
 gem 'jbuilder', '~> 2.0'
 gem 'bcrypt', '~> 3.1.7'
+gem 'rabl'
+gem 'oj'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -17,7 +19,10 @@ group :development, :test do
   gem 'spring'
 
   gem 'rspec-rails'
-  gem 'fuubar'
   gem 'factory_girl_rails'
+end
+
+group :test do
+  gem 'fuubar'
 end
 

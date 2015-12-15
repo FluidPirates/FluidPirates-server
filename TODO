@@ -1,6 +1,3 @@
-* resources :categories
-* get "polls" => "polls#index"
-* resources "delegations"
 * resources :polls
 * resources :propositions
 * resources :choices

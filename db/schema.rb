@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151214142005) do
+ActiveRecord::Schema.define(version: 20151215122646) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.integer  "group_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.text     "description"
   end
 
   add_index "categories", ["group_id"], name: "index_categories_on_group_id"
@@ -32,16 +33,16 @@ ActiveRecord::Schema.define(version: 20151214142005) do
   add_index "choices", ["proposition_id"], name: "index_choices_on_proposition_id"
 
   create_table "delegations", force: :cascade do |t|
-    t.integer  "delegee_id"
-    t.integer  "representative_id"
+    t.integer  "user_id"
+    t.integer  "delegate_id"
     t.integer  "category_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   add_index "delegations", ["category_id"], name: "index_delegations_on_category_id"
-  add_index "delegations", ["delegee_id"], name: "index_delegations_on_delegee_id"
-  add_index "delegations", ["representative_id"], name: "index_delegations_on_representative_id"
+  add_index "delegations", ["delegate_id"], name: "index_delegations_on_delegate_id"
+  add_index "delegations", ["user_id"], name: "index_delegations_on_user_id"
 
   create_table "groups", force: :cascade do |t|
     t.string   "name"

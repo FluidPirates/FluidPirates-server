@@ -2,14 +2,28 @@ class API::APIController < ApplicationController
   before_action :verify_token
 	before_action :set_content_type_json
 
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+
   protected
 
   def render_error(message, status: :bad_request)
-    render json: { message: message }, status: status
+    render_message(message, status: status)
   end
 
   def render_success(message = 'Success', status: :ok)
-    render json: { message: message }, status: status
+    render_message(message, status: status)
+  end
+
+  def render_message(message, status: status)
+    if Rails.env.development?
+      render json: { message: message, status: status }, status: status
+    else
+      render json: { message: message }, status: status
+    end
+  end
+
+  def record_not_found
+    render_error("Record not found", status: :not_found)
   end
 
   def current_token
