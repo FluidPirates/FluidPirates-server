@@ -2,11 +2,7 @@ class API::UsersController < API::APIController
   skip_before_action :verify_token, only: [:create]
 
   def current
-    if current_user
-      render json: current_user.to_json(only: [:id, :name, :email])
-    else
-      render json: {}
-    end
+    @user = current_user
   end
 
   def index

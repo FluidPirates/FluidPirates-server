@@ -45,4 +45,3 @@ class API::DelegationsController < API::APIController
     params[:delegation].try(:permit, [:delegate_id])
   end
 end
-

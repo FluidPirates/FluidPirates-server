@@ -2,11 +2,10 @@ class API::GroupsController < API::APIController
   before_action :fetch_group, only: [:show, :update, :destroy]
 
   def show
-    render json: @group.to_json(only: [:name, :description])
   end
 
   def index
-    render json: Group.all.to_json(only: [:name, :description])
+    @groups = current_user.groups
   end
 
   def create
@@ -42,4 +41,3 @@ class API::GroupsController < API::APIController
     params[:group].try(:permit, [:name, :description])
   end
 end
-

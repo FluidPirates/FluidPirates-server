@@ -1,13 +1,11 @@
 class API::CategoriesController < API::APIController
-  before_action :fetch_group, only: [:index, :create]
-  before_action :fetch_category, only: [:show, :update, :destroy]
+  before_action :fetch_resources
 
   def show
-    render json: @category.to_json(only: [:name, :description])
   end
 
   def index
-    render json: @group.categories.to_json(only: [:name, :description])
+    @categories = @group.categories
   end
 
   def create
@@ -35,16 +33,14 @@ class API::CategoriesController < API::APIController
 
   protected
 
-  def fetch_group
+  def fetch_resources
     @group = Group.find_by!(id: params[:group_id])
-  end
-
-  def fetch_category
-    @category = Category.find_by!(group_id: params[:group_id], id: params[:id])
+    if params[:id]
+      @category = @group.categories.find_by!(id: params[:id])
+    end
   end
 
   def category_params
     params[:category].try(:permit, [:name, :description])
   end
 end
-
