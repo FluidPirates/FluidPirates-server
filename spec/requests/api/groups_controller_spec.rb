@@ -4,6 +4,19 @@ RSpec.describe API::GroupsController, type: :request do
   let(:user) { create(:user) }
   let(:token) { create(:token, user: user).value }
 
+  describe "#index" do
+    let!(:groups) { create_list(:group, 5) }
+
+    subject do
+      get "/api/groups", token: token
+      json_response
+    end
+
+    it "return the group's name" do
+      expect(subject.map { |group| group["name"] }).to include groups.first.name
+    end
+  end
+
   describe "#show" do
     let(:group) { create(:group) }
 

@@ -6,7 +6,7 @@ class API::GroupsController < API::APIController
   end
 
   def index
-    render json: Group.all.map { |group| group.to_json(only: [:name, :description]) }
+    render json: Group.all.to_json(only: [:name, :description])
   end
 
   def create
