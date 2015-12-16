@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     resources :users
 
     resources :groups do
+      post "invitations/accept" => "invitations#accept"
+      resources :invitations
       resources :memberships
 
       resources :categories do

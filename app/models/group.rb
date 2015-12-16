@@ -1,4 +1,5 @@
 class Group < ActiveRecord::Base
+  has_many :invitations
   has_many :memberships
   has_many :users, through: :memberships
   has_many :categories
@@ -14,7 +15,7 @@ class Group < ActiveRecord::Base
   end
 
   def add_admin(user)
-    memberships.create(user: user, role: "admin")
+    memberships.create!(user: user, role: "admin")
   end
 
   def full_error_messages

@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe "Voting flow", type: :request do
-  let!(:other_user) { create(:user) }
-
   it "lets the user creates everything necessary to vote" do
     get "/"
     expect(response.body).to include("API")
@@ -13,15 +11,31 @@ RSpec.describe "Voting flow", type: :request do
       password: "somepassword"
     }
 
+    other_user_attributes = {
+      name: "Some other one",
+      email: "some.other.one@example.com",
+      password: "someotherpassword"
+    }
+
     post "/api/users", user: user_attributes
     assert_response 200
 
     token = json_response["token"]
 
+    post "/api/users", user: other_user_attributes
+    assert_response 200
+
+    other_token = json_response["token"]
+
     get "/api/users/current", token: token
     assert_response 200
 
     user_id = json_response["id"]
+
+    get "/api/users/current", token: other_token
+    assert_response 200
+
+    other_user_id = json_response["id"]
 
     delete "/api/sessions", token: token
     assert_response 200
@@ -38,12 +52,28 @@ RSpec.describe "Voting flow", type: :request do
     group_id = json_response.first["id"]
     group_url = "/api/groups/#{group_id}"
 
-    post "#{group_url}/memberships", token: token, membership: { user: other_user.id, role: "member" }
+    invitation = build(:invitation, email: other_user_attributes[:email])
+
+    post "#{group_url}/invitations", token: token, invitation: invitation.attributes
+    assert_response 200
+    get "#{group_url}/invitations", token: token
+    assert_response 200
+
+    invitation_key = json_response.last["key"]
+
+    post "#{group_url}/invitations/accept", token: other_token, key: invitation_key
+    assert_response 200
+
+    post "#{group_url}/memberships", token: token, membership: build(:membership).attributes
     assert_response 200
     get "#{group_url}/memberships", token: token
     assert_response 200
 
-    other_user_id = json_response.select { |u| u["id"] != user_id }.first["id"]
+    membership_id = json_response.detect { |m| m["user"].try(:[], "id") == other_user_id }["id"]
+    membership_url = "#{group_url}/memberships/#{membership_id}"
+
+    patch "#{membership_url}", token: token, membership: { role: "admin" }
+    assert_response 200
 
     post "#{group_url}/categories", token: token, poll: build(:category).attributes
     assert_response 200
