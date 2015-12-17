@@ -15,7 +15,7 @@ class API::InvitationsController < API::APIController
   end
 
   def create
-    @invitation = @group.invitations.create(invitation_params)
+    @invitation = @group.invitations.create(invitation_params.merge(user: current_user))
 
     if @invitation.save
       render_success

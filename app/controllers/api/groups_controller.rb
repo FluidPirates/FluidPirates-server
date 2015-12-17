@@ -1,11 +1,16 @@
 class API::GroupsController < API::APIController
-  before_action :fetch_group, only: [:show, :update, :destroy]
+  before_action :fetch_resources
 
   def show
   end
 
   def index
+    @groups = Group.all
+  end
+
+  def current
     @groups = current_user.groups
+    render "api/groups/index"
   end
 
   def create
@@ -34,8 +39,10 @@ class API::GroupsController < API::APIController
 
   protected
 
-  def fetch_group
-    @group = Group.find_by!(id: params[:id] || params[:group_id])
+  def fetch_resources
+    if params[:id]
+      @group = Group.find_by!(id: params[:id])
+    end
   end
 
   def group_params

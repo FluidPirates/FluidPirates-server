@@ -42,6 +42,6 @@ class API::PollsController < API::APIController
   end
 
   def poll_params
-    params[:poll].try(:permit, [:name, :description])
+    params[:poll].try(:permit, [:name, :description, :open_at, :close_at])
   end
 end

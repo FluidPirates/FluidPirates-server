@@ -14,15 +14,15 @@ class API::APIController < ApplicationController
     render_message(message, status: status)
   end
 
-  def record_not_found
-    render_error("Record not found", status: :not_found)
+  def record_not_found(exception)
+    render_message("Record not found", status: :not_found, extras: { details: exception.message })
   end
 
-  def render_message(message, status:)
+  def render_message(message, status:, extras: {})
     if Rails.env.development?
-      render json: { message: message, status: status }, status: status
+      render json: { message: message, status: status }.merge(extras), status: status
     else
-      render json: { message: message }, status: status
+      render json: { message: message }.merge(extras), status: status
     end
   end
 

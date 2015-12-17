@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     get "users/current" => "users#current"
     resources :users
 
+    get "groups/current" => "groups#current"
     resources :groups do
       post "invitations/accept" => "invitations#accept"
       resources :invitations

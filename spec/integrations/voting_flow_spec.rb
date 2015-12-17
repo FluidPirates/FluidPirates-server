@@ -5,17 +5,9 @@ RSpec.describe "Voting flow", type: :request do
     get "/"
     expect(response.body).to include("API")
 
-    user_attributes = {
-      name: "Some one",
-      email: "someone@example.com",
-      password: "somepassword"
-    }
+    user_attributes = build(:user).attributes.merge(password: "somepassword")
 
-    other_user_attributes = {
-      name: "Some other one",
-      email: "some.other.one@example.com",
-      password: "someotherpassword"
-    }
+    other_user_attributes = build(:user).attributes.merge(password: "someotherpassword")
 
     post "/api/users", user: user_attributes
     assert_response 200
@@ -48,11 +40,13 @@ RSpec.describe "Voting flow", type: :request do
     assert_response 200
     get "/api/groups", token: token
     assert_response 200
+    get "/api/groups/current", token: token
+    assert_response 200
 
     group_id = json_response.first["id"]
     group_url = "/api/groups/#{group_id}"
 
-    invitation = build(:invitation, email: other_user_attributes[:email])
+    invitation = build(:invitation, email: other_user_attributes["email"])
 
     post "#{group_url}/invitations", token: token, invitation: invitation.attributes
     assert_response 200
@@ -75,7 +69,7 @@ RSpec.describe "Voting flow", type: :request do
     patch "#{membership_url}", token: token, membership: { role: "admin" }
     assert_response 200
 
-    post "#{group_url}/categories", token: token, poll: build(:category).attributes
+    post "#{group_url}/categories", token: token, category: build(:category).attributes
     assert_response 200
     get "#{group_url}/categories", token: token
     assert_response 200
