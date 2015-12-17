@@ -2,7 +2,6 @@
 Current
 ----
 
-* Add database constraints and defaults
 * Add seeds
 * Handle rights
 * Invitation email

@@ -26,12 +26,8 @@ RSpec.describe API::SessionsController, type: :request do
   end
 
   describe "#create" do
-    let(:name) { "Some Name" }
-    let(:email) { "test@example.com" }
-    let(:password) { "some-password" }
-
     subject do
-      post "/api/users", user: { name: name, email: email, password: password }
+      post "/api/users", user: build(:user).attributes.merge(password: "XXX")
       json_response
     end
 

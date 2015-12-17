@@ -31,11 +31,8 @@ RSpec.describe API::GroupsController, type: :request do
   end
 
   describe "#create" do
-    let(:name) { "Some Name" }
-    let(:description) { "Some Description" }
-
     subject do
-      post "/api/groups", token: token, group: { name: name, description: description }
+      post "/api/groups", token: token, group: build(:group).attributes
       json_response
     end
 
