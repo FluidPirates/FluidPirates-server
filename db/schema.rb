@@ -14,18 +14,18 @@
 ActiveRecord::Schema.define(version: 20151215201924) do
 
   create_table "categories", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "group_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.text     "description"
+    t.string   "name",                     null: false
+    t.integer  "group_id",                 null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.text     "description", default: ""
   end
 
   add_index "categories", ["group_id"], name: "index_categories_on_group_id"
 
   create_table "choices", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "proposition_id"
+    t.string   "name",           null: false
+    t.integer  "proposition_id", null: false
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
@@ -33,9 +33,9 @@ ActiveRecord::Schema.define(version: 20151215201924) do
   add_index "choices", ["proposition_id"], name: "index_choices_on_proposition_id"
 
   create_table "delegations", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "delegate_id"
-    t.integer  "category_id"
+    t.integer  "user_id",     null: false
+    t.integer  "delegate_id", null: false
+    t.integer  "category_id", null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -45,17 +45,17 @@ ActiveRecord::Schema.define(version: 20151215201924) do
   add_index "delegations", ["user_id"], name: "index_delegations_on_user_id"
 
   create_table "groups", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.text     "description"
+    t.string   "name",                     null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.text     "description", default: ""
   end
 
   create_table "invitations", force: :cascade do |t|
-    t.string   "email"
-    t.string   "key"
-    t.integer  "group_id"
-    t.integer  "user_id"
+    t.string   "email",      null: false
+    t.string   "key",        null: false
+    t.integer  "group_id",   null: false
+    t.integer  "user_id",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -64,23 +64,23 @@ ActiveRecord::Schema.define(version: 20151215201924) do
   add_index "invitations", ["user_id"], name: "index_invitations_on_user_id"
 
   create_table "memberships", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "group_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "role"
+    t.integer  "user_id",                       null: false
+    t.integer  "group_id",                      null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.string   "role",       default: "member"
   end
 
   add_index "memberships", ["group_id"], name: "index_memberships_on_group_id"
   add_index "memberships", ["user_id"], name: "index_memberships_on_user_id"
 
   create_table "polls", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "user_id"
-    t.integer  "category_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.text     "description"
+    t.string   "name",                     null: false
+    t.integer  "user_id",                  null: false
+    t.integer  "category_id",              null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.text     "description", default: ""
     t.datetime "open_at"
     t.datetime "close_at"
   end
@@ -89,19 +89,19 @@ ActiveRecord::Schema.define(version: 20151215201924) do
   add_index "polls", ["user_id"], name: "index_polls_on_user_id"
 
   create_table "propositions", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "poll_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.text     "description"
+    t.string   "name",                     null: false
+    t.integer  "poll_id",                  null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.text     "description", default: ""
   end
 
   add_index "propositions", ["poll_id"], name: "index_propositions_on_poll_id"
 
   create_table "tokens", force: :cascade do |t|
-    t.string   "value"
-    t.datetime "expires_at"
-    t.integer  "user_id"
+    t.string   "value",      null: false
+    t.datetime "expires_at", null: false
+    t.integer  "user_id",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -109,16 +109,16 @@ ActiveRecord::Schema.define(version: 20151215201924) do
   add_index "tokens", ["user_id"], name: "index_tokens_on_user_id"
 
   create_table "users", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "password_digest"
+    t.string   "name",            null: false
+    t.string   "email",           null: false
+    t.string   "password_digest", null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
 
   create_table "votes", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "choice_id"
+    t.integer  "user_id",    null: false
+    t.integer  "choice_id",  null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

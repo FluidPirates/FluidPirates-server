@@ -1,13 +1,12 @@
 class Category < ActiveRecord::Base
+  belongs_to :group
+
   has_many :delegations
   has_many :polls
   has_many :propositions, through: :polls
   has_many :choices, through: :polls
   has_many :votes, through: :choices
 
-  belongs_to :group
-
-  def full_error_messages
-    errors.full_messages.join(", ")
-  end
+  validates :name, presence: true, uniqueness: { scope: :group_id }
+  validates :group, presence: true
 end

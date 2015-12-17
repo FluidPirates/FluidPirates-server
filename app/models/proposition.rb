@@ -3,4 +3,7 @@ class Proposition < ActiveRecord::Base
 
   has_many :choices
   has_many :votes, through: :choices
+
+  validates :poll, presence: true
+  validates :name, presence: true
 end

@@ -1,15 +1,9 @@
 ----
-Production
-----
-
-* Make docker container
-* Publish docker container
-
-----
 Current
 ----
 
 * Add database constraints and defaults
+* Add seeds
 * Handle rights
 * Invitation email
 * Add models validations
@@ -31,6 +25,9 @@ Later
 ----
 Maybe
 ----
+* All categories delegation
+* Public votes for delegates?
+* Choice to be delegatable or not?
 * Choice images
 * Propositions images
 * Polls images

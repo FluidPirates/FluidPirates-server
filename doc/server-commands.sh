@@ -17,5 +17,4 @@ sudo service docker start
 sudo sh -c 'docker build -t fluidpirates-server .'
 sudo sh -c 'docker run -tP fluidpirates-server'
 
-docker run -p 3000:3000 fluidpirates-server
-
+sudo docker run -p 80:3000 -v $(pwd)/db:/app/db -t fluidpirates-server
