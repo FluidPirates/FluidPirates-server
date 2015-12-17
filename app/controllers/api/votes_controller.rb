@@ -1,5 +1,6 @@
 class API::VotesController < API::APIController
   before_action :fetch_resources
+  authorize_resource
 
   def show
   end

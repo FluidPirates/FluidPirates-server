@@ -1,5 +1,6 @@
 class API::PollsController < API::APIController
   before_action :fetch_resources
+  authorize_resource
 
   def show
   end
@@ -36,6 +37,7 @@ class API::PollsController < API::APIController
   def fetch_resources
     @group = Group.find_by!(id: params[:group_id])
     @category = @group.categories.find_by!(id: params[:category_id])
+
     if params[:id]
       @poll = @category.polls.find_by!(id: params[:id])
     end

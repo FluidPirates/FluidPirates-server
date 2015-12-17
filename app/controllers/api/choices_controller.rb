@@ -1,5 +1,6 @@
 class API::ChoicesController < API::APIController
   before_action :fetch_resources
+  authorize_resource
 
   def show
   end
@@ -38,6 +39,7 @@ class API::ChoicesController < API::APIController
     @category = @group.categories.find_by!(id: params[:category_id])
     @poll = @category.polls.find_by!(id: params[:poll_id])
     @proposition = @poll.propositions.find_by!(id: params[:proposition_id])
+    
     if params[:id]
       @choice = @proposition.choices.find_by!(id: params[:id])
     end

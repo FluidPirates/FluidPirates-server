@@ -1,6 +1,9 @@
 class API::SessionsController < API::APIController
   skip_before_action :verify_token, only: [:create]
 
+  before_action :load_resources
+  authorize_resource :token
+
   def create
     @user = User.find_by(email: params[:email])
 
@@ -16,5 +19,11 @@ class API::SessionsController < API::APIController
   def destroy
     current_token.try(:destroy!)
     render_success
+  end
+
+  protected
+
+  def load_resources
+    @token = current_token # For CanCanCan
   end
 end

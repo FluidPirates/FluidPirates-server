@@ -1,5 +1,6 @@
 class API::UsersController < API::APIController
   skip_before_action :verify_token, only: [:create]
+  load_and_authorize_resource
 
   def show
   end
@@ -10,13 +11,7 @@ class API::UsersController < API::APIController
   end
 
   def index
-    if params[:group_id]
-      @users = Group.find_by!(id: params[:group_id]).users
-    else
-      @users = User.all
-    end
-
-    render json: @users.to_json(only: [:id, :name, :email])
+    @users = User.all
   end
 
   def create

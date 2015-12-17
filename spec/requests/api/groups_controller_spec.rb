@@ -1,19 +1,30 @@
 require 'rails_helper'
 
 RSpec.describe API::GroupsController, type: :request do
-  let(:user) { create(:user) }
-  let(:token) { create(:token, user: user).value }
+  let!(:user) { create(:user) }
+  let!(:token) { create(:token, user: user).value }
+  let!(:group) { create(:group) }
+  let!(:membership) { create(:membership, group: group, user: user, role: "admin") }
 
   describe "#index" do
-    let!(:memberships) { create_list(:membership, 2, user: user) }
-
     subject do
       get "/api/groups", token: token
       json_response
     end
 
-    it "return the group's name" do
-      expect(subject.size).to eq 2
+    it "returns all the groups" do
+      expect(subject.size).to eq Group.count
+    end
+  end
+
+  describe "#current" do
+    subject do
+      get "/api/groups/current", token: token
+      json_response
+    end
+
+    it "returns only the groups the user is member of" do
+      expect(subject.size).to eq 1
     end
   end
 
@@ -46,7 +57,6 @@ RSpec.describe API::GroupsController, type: :request do
   end
 
   describe "#update" do
-    let(:group) { create(:group) }
     let(:description) { "Changed Description" }
 
     subject do
@@ -60,8 +70,6 @@ RSpec.describe API::GroupsController, type: :request do
   end
 
   describe "#update" do
-    let!(:group) { create(:group) }
-
     subject do
       delete "/api/groups/#{group.id}", token: token
       json_response

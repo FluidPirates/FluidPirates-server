@@ -28,5 +28,5 @@ Rails.application.routes.draw do
   end
 
   root "pages#home"
-  get "*path" => "pages#not_found", format: "html"
+  get "*path" => "pages#not_found", format: :html
 end

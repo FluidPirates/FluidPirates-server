@@ -1,5 +1,6 @@
 class API::InvitationsController < API::APIController
   before_action :fetch_resources
+  authorize_resource
 
   def show
   end
@@ -42,6 +43,7 @@ class API::InvitationsController < API::APIController
 
   def fetch_resources
     @group = Group.find_by!(id: params[:group_id])
+    
     if params[:id]
       @invitation = @group.invitations.find_by!(id: params[:id])
     end

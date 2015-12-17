@@ -1,8 +1,11 @@
 class API::APIController < ApplicationController
   before_action :verify_token
 	before_action :set_content_type_json
+  check_authorization
 
-  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+  rescue_from ActiveRecord::RecordNotFound, with: :not_found
+  rescue_from ActionController::RoutingError, with: :not_found
+  rescue_from CanCan::AccessDenied, with: :access_denied
 
   protected
 
@@ -14,8 +17,12 @@ class API::APIController < ApplicationController
     render_message(message, status: status)
   end
 
-  def record_not_found(exception)
-    render_message("Record not found", status: :not_found, extras: { details: exception.message })
+  def not_found(exception)
+    render_message("Page not found: #{exception.message}", status: :not_found)
+  end
+
+  def access_denied(exception)
+    render_message("Access Denied: #{exception.message}", status: :not_found)
   end
 
   def render_message(message, status:, extras: {})
@@ -32,7 +39,7 @@ class API::APIController < ApplicationController
   end
 
   def current_user
-    current_token.user
+    current_token.try(:user)
   end
 
   def verify_token
@@ -49,4 +56,3 @@ class API::APIController < ApplicationController
     headers['Content-Type'] = 'application/json'
   end
 end
-

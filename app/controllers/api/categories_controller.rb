@@ -1,5 +1,6 @@
 class API::CategoriesController < API::APIController
   before_action :fetch_resources
+  authorize_resource
 
   def show
   end
@@ -35,6 +36,7 @@ class API::CategoriesController < API::APIController
 
   def fetch_resources
     @group = Group.find_by!(id: params[:group_id])
+    
     if params[:id]
       @category = @group.categories.find_by!(id: params[:id])
     end

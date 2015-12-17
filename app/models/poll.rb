@@ -20,4 +20,8 @@ class Poll < ActiveRecord::Base
   def closed?
     !open?
   end
+
+  def group
+    category.group
+  end
 end

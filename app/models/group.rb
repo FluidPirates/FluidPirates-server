@@ -10,11 +10,27 @@ class Group < ActiveRecord::Base
 
   validates :name, uniqueness: true, presence: true
 
+  scope :with_includes, -> {
+    includes(:categories, polls: { propositions: :choices })
+  }
+
   def users_count
     users.size
   end
 
   def add_admin(user)
     memberships.create!(user: user, role: "admin")
+  end
+
+  def has_user?(user)
+    !!memberships.find_by(user: user)
+  end
+
+  def has_member?(user)
+    !!memberships.members.find_by(user: user)
+  end
+
+  def has_admin?(user)
+    !!memberships.admins.find_by(user: user)
   end
 end

@@ -8,4 +8,8 @@ class Delegation < ActiveRecord::Base
   validates :category, presence: true
   validates :user, presence: true, uniqueness: { scope: :category_id }
   validates :delegate, presence: true
+
+  def group
+    category.group
+  end
 end

@@ -1,11 +1,12 @@
 class API::GroupsController < API::APIController
   before_action :fetch_resources
+  authorize_resource
 
   def show
   end
 
   def index
-    @groups = Group.all
+    @groups = Group.with_includes
   end
 
   def current
@@ -41,7 +42,7 @@ class API::GroupsController < API::APIController
 
   def fetch_resources
     if params[:id]
-      @group = Group.find_by!(id: params[:id])
+      @group = Group.with_includes.find_by!(id: params[:id])
     end
   end
 

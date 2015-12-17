@@ -6,4 +6,12 @@ class Proposition < ActiveRecord::Base
 
   validates :poll, presence: true
   validates :name, presence: true
+
+  def category
+    poll.category
+  end
+
+  def group
+    category.group
+  end
 end

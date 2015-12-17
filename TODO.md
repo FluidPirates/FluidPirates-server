@@ -2,7 +2,6 @@
 Current
 ----
 
-* Add seeds
 * Handle rights
 * Invitation email
 * Add models validations
@@ -20,10 +19,12 @@ Later
 * Add Emails table
 * Group domains
 * Public / private votes
+* Fix performance issues
 
 ----
 Maybe
 ----
+
 * All categories delegation
 * Public votes for delegates?
 * Choice to be delegatable or not?
