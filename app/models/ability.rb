@@ -8,6 +8,8 @@ class Ability
     else
       can [:read, :destroy], Token, user: user
 
+      can :current, [User, Group, Vote]
+
       can :read, Group do |group|
         group.users.include?(user)
       end
@@ -16,11 +18,11 @@ class Ability
         group.has_admin?(user)
       end
 
-      can :read, [Category, Poll, Proposition, Choice] do |object|
+      can :read, [Membership, Category, Poll, Proposition, Choice] do |object|
         object.group.users.include?(user)
       end
 
-      can :manage, [Category, Poll, Proposition, Choice] do |category|
+      can :manage, [Membership, Category, Poll, Proposition, Choice] do |category|
         category.group.has_admin?(user)
       end
 
@@ -33,7 +35,7 @@ class Ability
       can :read, Delegation, delegate: user
 
       can :manage, Invitation, user: user
-      can :read, Invitation, email: user.email
+      can [:read, :accept], Invitation, email: user.email
     end
   end
 end

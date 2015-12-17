@@ -2,7 +2,6 @@
 Current
 ----
 
-* Handle rights
 * Invitation email
 * Add models validations
 
