@@ -1,12 +1,17 @@
 ----
+Production
+----
+
+* Make docker container
+* Publish docker container
+
+----
 Current
 ----
 
 * Add database constraints and defaults
 * Handle rights
-* Join a group
-* Invite to group
-  * Invitation email
+* Invitation email
 * Add models validations
 
 ----
