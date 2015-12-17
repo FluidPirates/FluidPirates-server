@@ -7,6 +7,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'bcrypt', '~> 3.1.7'
 gem 'rabl'
 gem 'oj'
+gem 'dotenv-rails'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
