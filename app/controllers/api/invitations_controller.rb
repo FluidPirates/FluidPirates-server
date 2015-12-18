@@ -19,6 +19,7 @@ class API::InvitationsController < API::APIController
     @invitation = @group.invitations.create(invitation_params.merge(user: current_user))
 
     if @invitation.save
+      InvitationsMailer.invitation_email(@invitation).deliver_later
       render_success
     else
       render_error(@invitation.full_error_messages)
@@ -43,7 +44,7 @@ class API::InvitationsController < API::APIController
 
   def fetch_resources
     @group = Group.find_by!(id: params[:group_id])
-    
+
     if params[:id]
       @invitation = @group.invitations.find_by!(id: params[:id])
     end

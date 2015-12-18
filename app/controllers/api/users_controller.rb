@@ -18,6 +18,7 @@ class API::UsersController < API::APIController
     @user = User.create(user_params)
 
     if @user.save
+      UserMailer.welcome_email(@user).deliver_later
       render json: { token: Token.create_for_user(@user), message: "Signed in" }
     else
       render_error(@user.errors.full_messages.join(", "))

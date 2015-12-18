@@ -2,9 +2,6 @@
 Current
 ----
 
-* Invitation email
-* Add models validations
-
 ----
 Later
 ----
@@ -24,6 +21,7 @@ Later
 Maybe
 ----
 
+* Verify email
 * All categories delegation
 * Public votes for delegates?
 * Choice to be delegatable or not?
