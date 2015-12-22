@@ -16,6 +16,8 @@ Later
 * Group domains
 * Public / private votes
 * Fix performance issues
+* Buy domain
+* Link domain to server 
 
 ----
 Maybe

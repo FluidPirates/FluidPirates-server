@@ -4,22 +4,22 @@ Rails.application.routes.draw do
     delete "sessions" => "sessions#destroy"
 
     get "users/current" => "users#current"
-    resources :users
+    resources :users, only: [:index, :show, :update, :destroy]
 
     get "groups/current" => "groups#current"
-    resources :groups do
+    resources :groups, only: [:index, :show, :update, :destroy] do
       post "invitations/accept" => "invitations#accept"
-      resources :invitations
-      resources :memberships
+      resources :invitations, only: [:index, :show, :update, :destroy]
+      resources :memberships, only: [:index, :show, :update, :destroy]
 
-      resources :categories do
-        resources "delegations"
+      resources :categories, only: [:index, :show, :update, :destroy] do
+        resources :delegations, only: [:index, :show, :update, :destroy]
 
-        resources :polls do
-          resources :propositions do
-            resources :choices do
+        resources :polls, only: [:index, :show, :update, :destroy] do
+          resources :propositions, only: [:index, :show, :update, :destroy] do
+            resources :choices, only: [:index, :show, :update, :destroy] do
               get "votes/current" => "votes#current"
-              resources :votes
+              resources :votes, only: [:index, :show, :update, :destroy]
             end
           end
         end
