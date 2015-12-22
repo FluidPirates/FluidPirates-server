@@ -31,7 +31,7 @@ RSpec.describe "Voting flow", type: :request do
 
     delete "/api/sessions", token: token
     assert_response_200
-    post "/api/sessions", user_attributes
+    post "/api/sessions", session: user_attributes
     assert_response_200
 
     token = json_response["token"]

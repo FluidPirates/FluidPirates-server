@@ -19,7 +19,7 @@ class API::InvitationsController < API::APIController
     @invitation = @group.invitations.create(invitation_params.merge(user: current_user))
 
     if @invitation.save
-      InvitationsMailer.invitation_email(@invitation).deliver_later
+      InvitationMailer.invitation_email(@invitation).deliver_later
       render_success
     else
       render_error(@invitation.full_error_messages)

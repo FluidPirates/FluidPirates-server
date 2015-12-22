@@ -7,7 +7,7 @@ RSpec.describe API::SessionsController, type: :request do
     let!(:user) { create(:user, password: correct_password) }
 
     subject do
-      post "/api/sessions", email: user.email, password: password
+      post "/api/sessions", session: { email: user.email, password: password }
       json_response
     end
 

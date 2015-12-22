@@ -5,9 +5,9 @@ class API::SessionsController < API::APIController
   authorize_resource :token
 
   def create
-    @user = User.find_by(email: params[:email])
+    @user = User.find_by(email: session_params[:email])
 
-    if @user.try(:authenticate, params[:password])
+    if @user.try(:authenticate, session_params[:password])
       render json: { token: Token.create_for_user(@user), message: "Logged in" }
     elsif !@user
       render_error("User not found")
@@ -25,5 +25,9 @@ class API::SessionsController < API::APIController
 
   def load_resources
     @token = current_token # For CanCanCan
+  end
+
+  def session_params
+    params[:session].try(:permit, [:email, :password])
   end
 end
