@@ -15,12 +15,13 @@ gem 'dotenv-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'factory_girl_rails'
+
 group :development, :test do
   gem 'byebug'
   gem 'spring'
 
   gem 'rspec-rails'
-  gem 'factory_girl_rails'
 end
 
 group :test do
