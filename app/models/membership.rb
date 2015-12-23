@@ -1,5 +1,5 @@
 class Membership < ActiveRecord::Base
-  ROLES = ["admin", "member"]
+  ROLES = ["admin", "member"] # member is the default
 
   belongs_to :user
   belongs_to :group

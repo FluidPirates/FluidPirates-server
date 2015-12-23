@@ -36,13 +36,13 @@ class API::MembershipsController < API::APIController
 
   def fetch_resources
     @group = Group.find_by!(id: params[:group_id])
-    
+
     if params[:id]
       @membership = @group.memberships.find_by!(id: params[:id])
     end
   end
 
   def membership_params
-    params[:membership].try(:permit, [:user_id, :category_id, :role])
+    params[:membership].try(:permit, [:user_id, :role])
   end
 end

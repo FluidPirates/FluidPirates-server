@@ -10,7 +10,10 @@ class API::InvitationsController < API::APIController
   end
 
   def accept
-    @invitation = Invitation.find_by!(key: params[:key], email: current_user.email)
+    @invitation = Invitation.find_by!(
+      key: params[:invitation].try(:[], :key),
+      email: current_user.email
+    )
     @invitation.accept!(invited_user: current_user)
     render_success
   end
@@ -51,6 +54,6 @@ class API::InvitationsController < API::APIController
   end
 
   def invitation_params
-    params[:invitation].try(:permit, [:key, :email])
+    params[:invitation].try(:permit, [:email])
   end
 end

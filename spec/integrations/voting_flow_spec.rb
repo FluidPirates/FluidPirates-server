@@ -55,7 +55,8 @@ RSpec.describe "Voting flow", type: :request do
 
     invitation_key = json_response.last["key"]
 
-    post "#{group_url}/invitations/accept", token: other_token, key: invitation_key
+    post "#{group_url}/invitations/accept", token: other_token,
+      invitation: { key: invitation_key }
     assert_response_200
 
     post "#{group_url}/memberships", token: token, membership: build(:membership).attributes
