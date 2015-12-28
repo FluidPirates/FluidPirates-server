@@ -2,18 +2,17 @@
 Current
 ----
 
+* Poll results
+* Group domains
+
 ----
 Later
 ----
 
-* Add kind to propositions
-* Add propositions max votes
-* Vote preference (eg: order)
 * Images for:
   * User profile pictures
   * Group profile pictures
 * Add Emails table
-* Group domains
 * Public / private votes
 * Fix performance issues
 * Buy domain
@@ -30,3 +29,4 @@ Maybe
 * Choice images
 * Propositions images
 * Polls images
+* "Vote blanc"?

@@ -15,7 +15,8 @@ class API::VotesController < API::APIController
   end
 
   def create
-    @vote = @choice.votes.create(user: current_user)
+    @vote = @choice.votes.build(votes_params)
+    @vote.user = current_user
 
     if @vote.save
       render_success
@@ -41,5 +42,9 @@ class API::VotesController < API::APIController
     if params[:id]
       @vote = @choice.votes.find_by!(id: params[:id])
     end
+  end
+
+  def votes_params
+    params[:vote].try(:permit, [:rank])
   end
 end

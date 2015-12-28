@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151215201924) do
+ActiveRecord::Schema.define(version: 20151228022419) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",                     null: false
@@ -89,11 +89,13 @@ ActiveRecord::Schema.define(version: 20151215201924) do
   add_index "polls", ["user_id"], name: "index_polls_on_user_id"
 
   create_table "propositions", force: :cascade do |t|
-    t.string   "name",                     null: false
-    t.integer  "poll_id",                  null: false
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.string   "name",                        null: false
+    t.integer  "poll_id",                     null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.text     "description", default: ""
+    t.integer  "max_votes",   default: 1
+    t.boolean  "ranked",      default: false
   end
 
   add_index "propositions", ["poll_id"], name: "index_propositions_on_poll_id"
@@ -121,6 +123,7 @@ ActiveRecord::Schema.define(version: 20151215201924) do
     t.integer  "choice_id",  null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "rank"
   end
 
   add_index "votes", ["choice_id"], name: "index_votes_on_choice_id"

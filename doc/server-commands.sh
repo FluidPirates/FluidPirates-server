@@ -22,3 +22,5 @@ sudo docker run -p 80:3000 -v $(pwd)/db:/app/db -t fluidpirates-server
 sudo docker build -t fluidpirates-server .
 
 sudo docker run -v $(pwd):/app -e RAILS_ENV=production -t fluidpirates-server rake db:reset
+
+sudo docker run -p 80:3000 -v $(pwd)/db:/app/db -e RAILS_ENV=production -t fluidpirates-server

@@ -38,13 +38,13 @@ class API::PropositionsController < API::APIController
     @group = Group.find_by!(id: params[:group_id])
     @category = @group.categories.find_by!(id: params[:category_id])
     @poll = @category.polls.find_by!(id: params[:poll_id])
-    
+
     if params[:id]
       @proposition = @poll.propositions.find_by!(id: params[:id])
     end
   end
 
   def proposition_params
-    params[:proposition].try(:permit, [:name, :description])
+    params[:proposition].try(:permit, [:name, :description, :max_votes, :ranked])
   end
 end
