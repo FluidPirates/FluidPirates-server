@@ -15,8 +15,8 @@ class Membership < ActiveRecord::Base
   private
 
   def user_email_domain_is_group_domain
-    if domain && user.email_domain != domain
-      errors.add(:user, "User's email must be \"#{domain}\"")
+    if group.domain && user.email_domain != group.domain
+      errors.add(:user, "email's domain must be \"#{group.domain}\"")
     end
   end
 end
