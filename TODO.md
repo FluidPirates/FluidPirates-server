@@ -2,7 +2,6 @@
 Current
 ----
 
-* Add more validations for propositions / choices / votes
 * Add Emails table
 * Buy domain
 * Link domain to server 
