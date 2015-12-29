@@ -2,6 +2,11 @@
 Current
 ----
 
+* Add more validations for propositions / choices / votes
+* Add Emails table
+* Buy domain
+* Link domain to server 
+
 ----
 Later
 ----
@@ -9,12 +14,8 @@ Later
 * Images for:
   * User profile pictures
   * Group profile pictures
-* Add Emails table
 * Public / private votes
 * Fix performance issues
-* Buy domain
-* Link domain to server 
-* Add more validations for propositions / choices / votes
 
 ----
 Maybe
