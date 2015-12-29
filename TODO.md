@@ -2,7 +2,6 @@
 Current
 ----
 
-* Poll results
 * Group domains
 
 ----
@@ -17,6 +16,7 @@ Later
 * Fix performance issues
 * Buy domain
 * Link domain to server 
+* Add more validations for propositions / choices / votes
 
 ----
 Maybe
@@ -30,3 +30,4 @@ Maybe
 * Propositions images
 * Polls images
 * "Vote blanc"?
+* Sorting methods option

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151228022419) do
+ActiveRecord::Schema.define(version: 20151229022821) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",                     null: false
@@ -89,13 +89,14 @@ ActiveRecord::Schema.define(version: 20151228022419) do
   add_index "polls", ["user_id"], name: "index_polls_on_user_id"
 
   create_table "propositions", force: :cascade do |t|
-    t.string   "name",                        null: false
-    t.integer  "poll_id",                     null: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.text     "description", default: ""
-    t.integer  "max_votes",   default: 1
-    t.boolean  "ranked",      default: false
+    t.string   "name",                                      null: false
+    t.integer  "poll_id",                                   null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+    t.text     "description",               default: ""
+    t.integer  "maximum_of_votes_per_user", default: 1
+    t.boolean  "ranked",                    default: false
+    t.integer  "number_of_winning_choices", default: 1
   end
 
   add_index "propositions", ["poll_id"], name: "index_propositions_on_poll_id"

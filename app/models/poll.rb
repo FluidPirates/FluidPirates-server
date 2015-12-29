@@ -21,6 +21,10 @@ class Poll < ActiveRecord::Base
     !open?
   end
 
+  def ended?
+    closed? && close_at && close_at < Date.current
+  end
+
   def group
     category.group
   end
