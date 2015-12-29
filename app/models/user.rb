@@ -15,4 +15,8 @@ class User < ActiveRecord::Base
   def token
     tokens.valid.last.try(:value) || Token.create_for_user(self)
   end
+
+  def email_domain
+    email.split("@").last
+  end
 end

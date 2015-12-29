@@ -47,6 +47,6 @@ class API::GroupsController < API::APIController
   end
 
   def group_params
-    params[:group].try(:permit, [:name, :description])
+    params[:group].try(:permit, [:name, :description, :domain])
   end
 end

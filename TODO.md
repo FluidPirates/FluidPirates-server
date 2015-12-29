@@ -2,8 +2,6 @@
 Current
 ----
 
-* Group domains
-
 ----
 Later
 ----
