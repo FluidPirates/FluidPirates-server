@@ -68,7 +68,7 @@ Most methods require a `token` params that can be acquired by registering (`POST
 * `GET /api/groups/:group_id/categories/:category_id/delegations`
 * `GET /api/groups/:group_id/categories/:category_id/delegations/:id`
 * `POST /api/groups/:group_id/categories/:category_id/delegations`
-  * Required: delegation[delegate_id]
+  * Required: delegation[delegatee_id]
 * `PATCH /api/groups/:group_id/categories/:category_id/delegations/:id`
 * `DELETE /api/groups/:group_id/categories/:category_id/delegations/:id`
 

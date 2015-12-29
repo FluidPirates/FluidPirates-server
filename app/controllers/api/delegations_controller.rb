@@ -10,7 +10,9 @@ class API::DelegationsController < API::APIController
   end
 
   def create
-    @delegation = current_user.delegations.create({category: @category}.merge(delegation_params))
+    @delegation = Delegation.new(delegation_params)
+    @delegation.delegator = current_user
+    @delegation.category = @category
 
     if @delegation.save
       render_success
@@ -44,6 +46,6 @@ class API::DelegationsController < API::APIController
   end
 
   def delegation_params
-    params[:delegation].try(:permit, [:delegate_id])
+    params[:delegation].try(:permit, [:delegatee_id])
   end
 end

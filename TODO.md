@@ -2,9 +2,7 @@
 Current
 ----
 
-* Add Emails table
-* Buy domain
-* Link domain to server 
+* Poll results with delegates power
 
 ----
 Later
@@ -20,6 +18,7 @@ Later
 Maybe
 ----
 
+* Add Emails table
 * Verify email
 * All categories delegation
 * Public votes for delegates?

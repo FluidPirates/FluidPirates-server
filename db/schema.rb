@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151229030838) do
+ActiveRecord::Schema.define(version: 20151229151205) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",                     null: false
@@ -33,16 +33,16 @@ ActiveRecord::Schema.define(version: 20151229030838) do
   add_index "choices", ["proposition_id"], name: "index_choices_on_proposition_id"
 
   create_table "delegations", force: :cascade do |t|
-    t.integer  "user_id",     null: false
-    t.integer  "delegate_id", null: false
-    t.integer  "category_id", null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "delegator_id", null: false
+    t.integer  "delegatee_id", null: false
+    t.integer  "category_id",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   add_index "delegations", ["category_id"], name: "index_delegations_on_category_id"
-  add_index "delegations", ["delegate_id"], name: "index_delegations_on_delegate_id"
-  add_index "delegations", ["user_id"], name: "index_delegations_on_user_id"
+  add_index "delegations", ["delegatee_id"], name: "index_delegations_on_delegatee_id"
+  add_index "delegations", ["delegator_id"], name: "index_delegations_on_delegator_id"
 
   create_table "groups", force: :cascade do |t|
     t.string   "name",                     null: false

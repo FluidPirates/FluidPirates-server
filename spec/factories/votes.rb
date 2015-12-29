@@ -5,7 +5,7 @@ FactoryGirl.define do
     rank nil
 
     factory :ranked_vote do
-      rank { generate(:i) }
+      rank 1
     end
   end
 end

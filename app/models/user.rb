@@ -2,7 +2,10 @@ class User < ActiveRecord::Base
   has_secure_password
 
   has_many :invitations
-  has_many :delegations
+  has_many :delegators_delegations, class_name: "Delegation", source: :delegator
+  has_many :delegators, through: :delegators_delegations
+  has_many :delegatees_delegations, class_name: "Delegation", source: :delegatee
+  has_many :delegatees, through: :delegatees_delegations
   has_many :polls
   has_many :votes
   has_many :tokens

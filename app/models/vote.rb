@@ -29,8 +29,10 @@ class Vote < ActiveRecord::Base
   end
 
   # In a ranked proposition, the voters can rank their votes (1 to N).
+  # Vote power =
+  #   1 + Sum of voting power of all non casted child votes
   def power
-    return 1 unless rank
+    vote_power = user.delegates.where(category: category)
     (proposition.maximum_of_votes_per_user - rank + 1) * 2
   end
 

@@ -2,11 +2,11 @@ object @delegation
 
 attributes :id
 
-child :user do
+child :delegator do
   extends "api/users/show"
 end
 
-child :delegate do
+child :delegatee do
   extends "api/users/show"
 end
 
