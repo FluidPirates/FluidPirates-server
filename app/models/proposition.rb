@@ -35,4 +35,8 @@ class Proposition < ActiveRecord::Base
     return unless poll.ended?
     choices.sort_by(&:votes_power).reverse
   end
+
+  def to_s
+    "Proposition##{id} - #{name}"
+  end
 end

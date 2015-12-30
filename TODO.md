@@ -2,8 +2,6 @@
 Current
 ----
 
-* Poll results with delegates power
-
 ----
 Later
 ----

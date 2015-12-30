@@ -58,4 +58,8 @@ class Vote < ActiveRecord::Base
       errors.add(:rank, "is not between 1 and #{max_votes}")
     end
   end
+
+  def to_s
+    "Vote##{id} (Choice##{choice_id} - User##{user_id})"
+  end
 end

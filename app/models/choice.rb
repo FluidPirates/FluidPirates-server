@@ -43,4 +43,8 @@ class Choice < ActiveRecord::Base
     return unless poll.ended?
     100 * voters_count / proposition.voters_count
   end
+
+  def to_s
+    "Choice##{id} - #{name}"
+  end
 end

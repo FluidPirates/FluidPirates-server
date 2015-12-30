@@ -28,4 +28,8 @@ class Poll < ActiveRecord::Base
   def group
     category.group
   end
+
+  def to_s
+    "Poll##{id} - #{name}"
+  end
 end

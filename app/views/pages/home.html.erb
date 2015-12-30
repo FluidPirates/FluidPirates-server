@@ -6,14 +6,32 @@
 <%=
   def print_delegators(delegate, category, n = 0)
     Delegation.where(category: category, delegate: delegate).to_a.map(&:delegator).map do |d|
-      "  |_" + "__" * n + d.to_s + "\n" + print_delegators(d, category, n + 1)
+      "  "  + "| " * n + "|_#{d}\n" + print_delegators(d, category, n + 1)
     end.join
   end
 
   Group.all.map do |g|
-    "#{g.to_s}\n" + g.categories.map do |c|
-      "  #{c.to_s}\n" + c.delegates_without_parent_delegates.uniq.map do |d|
-        "  |_#{d.to_s}\n" + print_delegators(d, c, 1)
+    "#{g}\n" + g.categories.map do |c|
+      "  #{c}\n" + c.delegates_without_parent_delegates.uniq.map do |d|
+        "  |_#{d}\n" + print_delegators(d, c, 1)
+      end.join
+    end.join("\n")
+  end.join("\n")
+%>
+</pre>
+
+<h3>DEBUG: Graph of votes power</h3>
+
+<pre>
+<%=
+  Group.all.map do |group|
+    "#{group}\n" + group.polls.map do |poll|
+      "  #{poll}\n  (Category: #{poll.category})\n" + poll.propositions.map do |proposition|
+        "  |_#{proposition}\n"+ proposition.choices.map do |choice|
+          "    |_#{choice}\n" + choice.votes.map do |vote|
+            "    | |_#{vote} - #{vote.power}\n"
+          end.join
+        end.join
       end.join
     end.join("\n")
   end.join("\n")

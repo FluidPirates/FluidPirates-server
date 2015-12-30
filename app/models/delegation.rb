@@ -12,7 +12,7 @@ class Delegation < ActiveRecord::Base
   end
 
   def has_parent_delegation
-    delegate.delegators_delegations.where(category: category).any?
+    Delegation.where(delegator: delegate, category: category).any?
   end
 
   def to_s

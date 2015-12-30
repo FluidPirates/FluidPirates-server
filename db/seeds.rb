@@ -39,7 +39,9 @@ create_list(:group, OTHERS).each do |group|
           choices = create_list(:choice, OTHERS, proposition: proposition)
 
           group.users.each do |user|
-            create(:vote, user: user, choice: choices.sample)
+            if rand(2) == 0
+              create(:vote, user: user, choice: choices.sample)
+            end
           end
         end
       end
