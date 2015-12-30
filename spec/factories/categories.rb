@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :category do
-    name { "Category #{generate :n}" }
-    description "Category description"
+    name { Faker::Commerce.department }
+    description { Faker::Company.bs }
     group
   end
 end

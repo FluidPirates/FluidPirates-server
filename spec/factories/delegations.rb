@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :delegation do
-    delegatee { create(:user) }
+    delegate { create(:user) }
     delegator { create(:user) }
     category
   end

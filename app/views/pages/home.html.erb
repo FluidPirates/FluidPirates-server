@@ -1,1 +1,21 @@
 <h1>This is FluidPirates server API</h1>
+
+<h3>DEBUG: Graphs of categories delegations</h3>
+
+<pre>
+<%=
+  def print_delegators(delegate, category, n = 0)
+    Delegation.where(category: category, delegate: delegate).to_a.map(&:delegator).map do |d|
+      "  |_" + "__" * n + d.to_s + "\n" + print_delegators(d, category, n + 1)
+    end.join
+  end
+
+  Group.all.map do |g|
+    "#{g.to_s}\n" + g.categories.map do |c|
+      "  #{c.to_s}\n" + c.delegates_without_parent_delegates.uniq.map do |d|
+        "  |_#{d.to_s}\n" + print_delegators(d, c, 1)
+      end.join
+    end.join("\n")
+  end.join("\n")
+%>
+</pre>

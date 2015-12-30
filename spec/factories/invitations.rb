@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :invitation do
-    email { "someone_#{generate :n}@example.com" }
+    email { "#{Faker::Internet.user_name}@example.com" }
     group
     key { SecureRandom.hex }
     user

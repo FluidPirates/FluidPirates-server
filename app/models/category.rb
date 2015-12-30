@@ -9,4 +9,12 @@ class Category < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: { scope: :group_id }
   validates :group, presence: true
+
+  def delegates_without_parent_delegates
+    group.users - delegations.select(&:has_parent_delegation).map(&:delegator).uniq
+  end
+
+  def to_s
+    "Category##{id} - #{name}"
+  end
 end

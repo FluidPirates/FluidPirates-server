@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :poll, aliases: [:open_poll] do
-    name { "Poll #{generate :n}" }
-    description "Poll description"
+    name { Faker::Company.buzzword }
+    description { Faker::Company.bs }
     open_at "2000-12-14 13:34:38"
     close_at "2020-12-14 13:34:38"
     user

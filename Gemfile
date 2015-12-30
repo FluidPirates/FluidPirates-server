@@ -16,6 +16,7 @@ gem 'dotenv-rails'
 # gem 'capistrano-rails', group: :development
 
 gem 'factory_girl_rails'
+gem 'faker'
 
 group :development, :test do
   gem 'byebug'

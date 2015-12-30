@@ -78,7 +78,7 @@ RSpec.describe "Voting flow", type: :request do
     category_id = json_response.first["id"]
     category_url = "#{group_url}/categories/#{category_id}"
 
-    post "#{category_url}/delegations", token: token, delegation: { delegatee_id: other_user_id }
+    post "#{category_url}/delegations", token: token, delegation: { delegate_id: other_user_id }
     assert_response_200
     get "#{category_url}/delegations", token: token
     assert_response_200

@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :choice do
-    name { "Choice #{generate :n}" }
+    name { Faker::Company.bs }
     proposition
   end
 end

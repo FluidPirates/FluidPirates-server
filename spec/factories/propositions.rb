@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :proposition, aliases: [:single_choice_proposition] do
-    name { "Proposition #{generate :n}" }
-    description "Proposition description"
+    name { Faker::Company.catch_phrase + "?" }
+    description { Faker::Company.bs }
     maximum_of_votes_per_user 1
     ranked false
     number_of_winning_choices 1

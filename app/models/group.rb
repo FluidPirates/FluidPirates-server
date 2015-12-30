@@ -33,4 +33,8 @@ class Group < ActiveRecord::Base
   def has_admin?(user)
     !!memberships.admins.find_by(user: user)
   end
+
+  def to_s
+    "Group ##{id} - #{name}"
+  end
 end

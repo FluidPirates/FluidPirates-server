@@ -6,7 +6,7 @@ child :delegator do
   extends "api/users/show"
 end
 
-child :delegatee do
+child :delegate do
   extends "api/users/show"
 end
 
