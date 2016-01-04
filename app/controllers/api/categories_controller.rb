@@ -36,13 +36,13 @@ class API::CategoriesController < API::APIController
 
   def fetch_resources
     @group = Group.find_by!(id: params[:group_id])
-    
+
     if params[:id]
       @category = @group.categories.find_by!(id: params[:id])
     end
   end
 
   def category_params
-    params[:category].try(:permit, [:name, :description])
+    params[:category].try(:permit, [:name, :description]) || {}
   end
 end

@@ -54,6 +54,6 @@ class API::InvitationsController < API::APIController
   end
 
   def invitation_params
-    params[:invitation].try(:permit, [:email])
+    params[:invitation].try(:permit, [:email]) || {}
   end
 end

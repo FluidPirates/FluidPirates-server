@@ -51,6 +51,6 @@ class API::PropositionsController < API::APIController
       :maximum_of_votes_per_user,
       :ranked,
       :number_of_winning_choices
-    ])
+    ]) || {}
   end
 end

@@ -28,6 +28,6 @@ class API::SessionsController < API::APIController
   end
 
   def session_params
-    params[:session].try(:permit, [:email, :password])
+    params[:session].try(:permit, [:email, :password]) || {}
   end
 end

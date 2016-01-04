@@ -45,6 +45,6 @@ class API::VotesController < API::APIController
   end
 
   def votes_params
-    params[:vote].try(:permit, [:rank])
+    params[:vote].try(:permit, [:rank]) || {}
   end
 end

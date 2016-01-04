@@ -46,6 +46,6 @@ class API::DelegationsController < API::APIController
   end
 
   def delegation_params
-    params[:delegation].try(:permit, [:delegate_id])
+    params[:delegation].try(:permit, [:delegate_id]) || {}
   end
 end

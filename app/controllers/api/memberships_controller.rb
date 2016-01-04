@@ -43,6 +43,6 @@ class API::MembershipsController < API::APIController
   end
 
   def membership_params
-    params[:membership].try(:permit, [:user_id, :role])
+    params[:membership].try(:permit, [:user_id, :role]) || {}
   end
 end

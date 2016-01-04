@@ -28,6 +28,6 @@ class API::UsersController < API::APIController
   protected
 
   def user_params
-    params[:user].try(:permit, [:name, :email, :password])
+    params[:user].try(:permit, [:name, :email, :password]) || {}
   end
 end
