@@ -26,11 +26,7 @@ class API::APIController < ApplicationController
   end
 
   def render_message(message, status:, extras: {})
-    if Rails.env.development?
-      render json: { message: message, status: status }.merge(extras), status: status
-    else
-      render json: { message: message }.merge(extras), status: status
-    end
+    render json: { message: message, status: status }.merge(extras), status: status
   end
 
   def current_token
