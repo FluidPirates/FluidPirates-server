@@ -74,41 +74,41 @@ Most methods require a `token` params that can be acquired by registering (`POST
 
 ### Votes
 
-* `GET /api/groups/:group_id/categories/:category_id/polls/:poll_id/propositions/:proposition_id/choices/:choice_id/votes/current`
-* `GET /api/groups/:group_id/categories/:category_id/polls/:poll_id/propositions/:proposition_id/choices/:choice_id/votes`
-* `GET /api/groups/:group_id/categories/:category_id/polls/:poll_id/propositions/:proposition_id/choices/:choice_id/votes/:id`
-* `POST /api/groups/:group_id/categories/:category_id/polls/:poll_id/propositions/:proposition_id/choices/:choice_id/votes`
-* `PATCH /api/groups/:group_id/categories/:category_id/polls/:poll_id/propositions/:proposition_id/choices/:choice_id/votes/:id`
-* `DELETE /api/groups/:group_id/categories/:category_id/polls/:poll_id/propositions/:proposition_id/choices/:choice_id/votes/:id`
+* `GET /api/groups/:group_id/polls/:poll_id/propositions/:proposition_id/choices/:choice_id/votes/current`
+* `GET /api/groups/:group_id/polls/:poll_id/propositions/:proposition_id/choices/:choice_id/votes`
+* `GET /api/groups/:group_id/polls/:poll_id/propositions/:proposition_id/choices/:choice_id/votes/:id`
+* `POST /api/groups/:group_id/polls/:poll_id/propositions/:proposition_id/choices/:choice_id/votes`
+* `PATCH /api/groups/:group_id/polls/:poll_id/propositions/:proposition_id/choices/:choice_id/votes/:id`
+* `DELETE /api/groups/:group_id/polls/:poll_id/propositions/:proposition_id/choices/:choice_id/votes/:id`
 
 ### Choices
 
-* `GET /api/groups/:group_id/categories/:category_id/polls/:poll_id/propositions/:proposition_id/choices`
-* `GET /api/groups/:group_id/categories/:category_id/polls/:poll_id/propositions/:proposition_id/choices/:id`
-* `POST /api/groups/:group_id/categories/:category_id/polls/:poll_id/propositions/:proposition_id/choices`
+* `GET /api/groups/:group_id/polls/:poll_id/propositions/:proposition_id/choices`
+* `GET /api/groups/:group_id/polls/:poll_id/propositions/:proposition_id/choices/:id`
+* `POST /api/groups/:group_id/polls/:poll_id/propositions/:proposition_id/choices`
   * Required: choice[name]
-* `PATCH /api/groups/:group_id/categories/:category_id/polls/:poll_id/propositions/:proposition_id/choices/:id`
-* `DELETE /api/groups/:group_id/categories/:category_id/polls/:poll_id/propositions/:proposition_id/choices/:id`
+* `PATCH /api/groups/:group_id/polls/:poll_id/propositions/:proposition_id/choices/:id`
+* `DELETE /api/groups/:group_id/polls/:poll_id/propositions/:proposition_id/choices/:id`
 
 ### Propositions
 
-* `GET /api/groups/:group_id/categories/:category_id/polls/:poll_id/propositions`
-* `GET /api/groups/:group_id/categories/:category_id/polls/:poll_id/propositions/:id`
-* `POST /api/groups/:group_id/categories/:category_id/polls/:poll_id/propositions`
+* `GET /api/groups/:group_id/polls/:poll_id/propositions`
+* `GET /api/groups/:group_id/polls/:poll_id/propositions/:id`
+* `POST /api/groups/:group_id/polls/:poll_id/propositions`
   * Required: proposition[name]
   * Optional: proposition[description]
-* `PATCH /api/groups/:group_id/categories/:category_id/polls/:poll_id/propositions/:id`
-* `DELETE /api/groups/:group_id/categories/:category_id/polls/:poll_id/propositions/:id`
+* `PATCH /api/groups/:group_id/polls/:poll_id/propositions/:id`
+* `DELETE /api/groups/:group_id/polls/:poll_id/propositions/:id`
 
 ### Polls
 
-* `GET /api/groups/:group_id/categories/:category_id/polls`
-* `GET /api/groups/:group_id/categories/:category_id/polls/:id`
-* `POST /api/groups/:group_id/categories/:category_id/polls`
+* `GET /api/groups/:group_id/polls`
+* `GET /api/groups/:group_id/polls/:id`
+* `POST /api/groups/:group_id/polls`
   * Required: poll[name]
   * Optional: poll[description]
-* `PATCH /api/groups/:group_id/categories/:category_id/polls/:id`
-* `DELETE /api/groups/:group_id/categories/:category_id/polls/:id`
+* `PATCH /api/groups/:group_id/polls/:id`
+* `DELETE /api/groups/:group_id/polls/:id`
 
 ### Categories
 
