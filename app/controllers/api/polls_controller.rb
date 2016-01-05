@@ -39,7 +39,7 @@ class API::PollsController < API::APIController
     @group = Group.find_by!(id: params[:group_id])
 
     if params[:id]
-      @poll = @category.polls.find_by!(id: params[:id])
+      @poll = @group.polls.find_by!(id: params[:id])
     end
   end
 
