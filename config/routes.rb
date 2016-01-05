@@ -14,13 +14,13 @@ Rails.application.routes.draw do
 
       resources :categories, only: [:index, :show, :create, :update, :destroy] do
         resources :delegations, only: [:index, :show, :create, :update, :destroy]
+      end
 
-        resources :polls, only: [:index, :show, :create, :update, :destroy] do
-          resources :propositions, only: [:index, :show, :create, :update, :destroy] do
-            resources :choices, only: [:index, :show, :create, :update, :destroy] do
-              get "votes/current" => "votes#current"
-              resources :votes, only: [:index, :show, :create, :update, :destroy]
-            end
+      resources :polls, only: [:index, :show, :create, :update, :destroy] do
+        resources :propositions, only: [:index, :show, :create, :update, :destroy] do
+          resources :choices, only: [:index, :show, :create, :update, :destroy] do
+            get "votes/current" => "votes#current"
+            resources :votes, only: [:index, :show, :create, :update, :destroy]
           end
         end
       end

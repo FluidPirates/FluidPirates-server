@@ -83,13 +83,13 @@ RSpec.describe "Voting flow", type: :request do
     get "#{category_url}/delegations", token: token
     assert_response_200
 
-    post "#{category_url}/polls", token: token, poll: build(:poll).attributes
+    post "#{group_url}/polls", token: token, poll: build(:poll, category: Category.find(category_id)).attributes
     assert_response_200
-    get "#{category_url}/polls", token: token
+    get "#{group_url}/polls", token: token
     assert_response_200
 
     poll_id = json_response.first["id"]
-    poll_url = "#{category_url}/polls/#{poll_id}"
+    poll_url = "#{group_url}/polls/#{poll_id}"
 
     post "#{poll_url}/propositions", token: token, proposition: build(:proposition).attributes
     assert_response_200

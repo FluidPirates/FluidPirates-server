@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :group do
-    name { Faker::University.name }
+    name { Faker::University.name + " " + rand(10).to_s }
     description { Faker::Company.catch_phrase }
     domain nil
 

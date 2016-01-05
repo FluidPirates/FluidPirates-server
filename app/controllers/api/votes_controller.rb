@@ -34,8 +34,7 @@ class API::VotesController < API::APIController
 
   def fetch_resources
     @group = Group.find_by!(id: params[:group_id])
-    @category = @group.categories.find_by!(id: params[:category_id])
-    @poll = @category.polls.find_by!(id: params[:poll_id])
+    @poll = @group.polls.find_by!(id: params[:poll_id])
     @proposition = @poll.propositions.find_by!(id: params[:proposition_id])
     @choice = @proposition.choices.find_by!(id: params[:choice_id])
 
