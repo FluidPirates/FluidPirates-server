@@ -1,5 +1,4 @@
 # ssh -i ~/code/keys/AWSDorianskeys.pem ubuntu@52.31.58.176
-cd FluidPirates-server
 git pull
 sudo docker build -t fluidpirates-server .
 sudo docker stop $(sudo docker ps -a -q)
